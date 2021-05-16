@@ -3,7 +3,7 @@ const fs = require("fs");
 const Path = require("path");
 const chalk = require("chalk");
 const slugify = require("slugify");
-
+const { default: axios } = require("axios");
 const EDX_URL = "https://courses.edx.org/api/courses/v2/blocks";
 
 async function dedx(
