@@ -1,8 +1,6 @@
 require("dotenv").config();
 const fs = require("fs");
 const Path = require("path");
-const { default: axios } = require("axios");
-const yargs = require("yargs");
 const chalk = require("chalk");
 const slugify = require("slugify");
 
@@ -102,7 +100,6 @@ async function edxDownloader(
     }
   }
 }
-// [1,2,3,4,5,6,7,8,9] s=2, e=5, l=5
 const checkInfoBeforeDownload = async (videos, videoPath) => {
   let num = 0;
   try {
@@ -111,7 +108,6 @@ const checkInfoBeforeDownload = async (videos, videoPath) => {
     console.log(error);
   }
 };
-
 const getVideoInfo = async (videos, num, videoPath) => {
   try {
     const { data } = await axios.get(videos[num].url);
@@ -183,15 +179,6 @@ const downloadVideo = async (path, videoUrl, videoName, num, videos) => {
     console.log(error);
   }
 };
-
-// in termnal: node server.js --id=COURSE_ID_FROM_EDX
-const id = yargs.argv["id"];
-
-const courseId = id || "course-v1:LinuxFoundationX+LFS101x+1T2020";
-const username = process.env.EDX_ACCOUNT_USERNAME;
-const cookie = process.env.EDX_COOKIES;
-
-edxDownloader(courseId, username, cookie);
 
 const dedx = edxDownloader;
 module.exports = dedx;
