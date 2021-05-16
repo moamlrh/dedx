@@ -4,6 +4,7 @@ const Path = require("path");
 const { default: axios } = require("axios");
 const yargs = require("yargs");
 const chalk = require("chalk");
+const slugify = require("slugify");
 
 const EDX_URL = "https://courses.edx.org/api/courses/v2/blocks";
 
@@ -21,11 +22,11 @@ async function edxDownloader(
   depth = "all"
 ) {
   if (!courseId) {
-    throw new Error(chalk.red("[] - Course id is required !"));
+    throw new Error(chalk.red("[-] - Course id is required !"));
   } else if (!username) {
-    throw new Error(chalk.red("[] - Your username is required !"));
+    throw new Error(chalk.red("[-] - Your username is required !"));
   } else if (!Cookie) {
-    throw new Error(chalk.red("[] - Your Cookie is required !"));
+    throw new Error(chalk.red("[-] - Your Cookie is required !"));
   }
   console.log(chalk.bgCyan("\t".repeat(40)));
   console.log("\t[+] Just wait .... ");
@@ -118,13 +119,8 @@ const getVideoInfo = async (videos, num, videoPath) => {
       .split("video-download-button")[1]
       .split("Download video file")[0]
       .split('"')[2];
-    const videoName = videos[num].name;
-
-    const path = Path.join(
-      __dirname,
-      videoPath || "/videos",
-      num + "-" + videoName + "-" + Date.now() + ".mp4"
-    );
+    const videoName = slugify(videos[num].name) + ".mp4";
+    const path = await checkIfFolderExists(videoPath);
     if (num < videos.length - 1) {
       downloadVideo(path, videoUrl, videoName, num, videos);
     } else {
@@ -135,10 +131,32 @@ const getVideoInfo = async (videos, num, videoPath) => {
   }
 };
 
+const checkIfFolderExists = async (videoPath) => {
+  const pt = videoPath || "/videos";
+  let path = Path.join(process.cwd(), pt);
+  try {
+    if (fs.existsSync(path)) {
+      return path;
+    } else {
+      await fs.mkdir(path, { recursive: true }, (err, p) => {
+        console.log("path", p);
+        if (err) {
+          throw new Error(err);
+        }
+        path = p;
+      });
+      return path;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const downloadVideo = async (path, videoUrl, videoName, num, videos) => {
+  const videoPath = Path.join(path, num + "-" + videoName);
   try {
     const { data } = await axios.get(videoUrl, { responseType: "stream" });
-    const stream = fs.createWriteStream(path);
+    const stream = fs.createWriteStream(videoPath);
 
     stream.on("open", () => {
       console.log(
