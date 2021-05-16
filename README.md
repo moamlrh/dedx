@@ -22,12 +22,11 @@ yarn add dedx
 ### How to use it ?
 
 - after install it, you can call the dedx by : 
-
-`const dedx = require('dedx')`
-
 - You should pass required arguments:
+
 ```javascript
-dedx(COURSE_ID, USERNAME, COOKIE)
+    const dedx = require('dedx')
+    dedx(COURSE_ID, USERNAME, COOKIE)
 ```
 
 ##### The arguments :
