@@ -1,0 +1,7 @@
+node_modules
+/node_modules
+.env
+yarn.lock
+test.js
+package-lock.json
+videos
