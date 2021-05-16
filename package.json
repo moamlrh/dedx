@@ -1,6 +1,6 @@
 {
   "name": "dedx",
-  "version": "1.2.0",
+  "version": "0.0.0",
   "description": "download all course video!",
   "main": "index.js",
   "scripts": {
