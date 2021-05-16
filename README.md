@@ -32,7 +32,7 @@ dedx(COURSE_ID, USERNAME, COOKIE)
 
 ##### The arguments :
 ###### COURSE_ID
-```javascript
+```
   COURSE_ID = The course id you want to downloaded for ex : 
   // You want to download ***CS50's Understanding Technology*** course 
   // Course URL : https://www.edx.org/course/cs50s-understanding-technology
@@ -40,17 +40,17 @@ dedx(COURSE_ID, USERNAME, COOKIE)
 ```
 
 ###### USERNAME 
-```javascript  
+```  
   USERNAME = You account user name.
 ```
 
 ###### COOKIE 
-```javascript  
+```  
   COOKIE = Your login cookies from edx
 ```
 
 ###### OPTIONS
-```javascript
+```
   OPTIONS = Is an object, You can use it by this way :
   
   ```javascript
