@@ -6,7 +6,7 @@ const slugify = require("slugify");
 const { default: axios } = require("axios");
 const EDX_URL = "https://courses.edx.org/api/courses/v2/blocks";
 
-async function edxDownloader(
+async function dedx(
   courseId,
   username,
   Cookie,
@@ -180,5 +180,4 @@ const downloadVideo = async (path, videoUrl, videoName, num, videos) => {
   }
 };
 
-const dedx = edxDownloader;
 module.exports = dedx;
