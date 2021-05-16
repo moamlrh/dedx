@@ -4,7 +4,8 @@
   "description": "download all course video!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./server.js",
+    "test": "node ./test.js "
   },
   "keywords": [
     "edx",
@@ -16,6 +17,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^9.0.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "yargs": "^17.0.1"
   }
 }

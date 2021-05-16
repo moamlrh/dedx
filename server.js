@@ -2,6 +2,17 @@ require("dotenv").config();
 const fs = require("fs");
 const Path = require("path");
 const { default: axios } = require("axios");
+const yargs = require("yargs");
+const colors = {
+  Red: "\u001b[1;31m",
+  Black: "\033[1;30m",
+  Green: "\x1b[1;32m",
+  Yellow: "\x1b[1;33m",
+  Blue: "\033[1;34m",
+  Magenta: "\033[1;35m",
+  Cyan: "\033[1;36m",
+  White: "\033[1;37m",
+};
 
 /**
  *  - get course information : https://courses.edx.org/api/courses/v2/blocks/?course_id=course-v1%3AHarvardX%2BCS50%2BX&username=moaml_riad&depth=100
@@ -30,7 +41,14 @@ async function edxDownloader(courseId, username, depth, Cookie, limit = 0) {
     }
     getArrayUrls(allVideiosUrl, limit);
   } catch (error) {
-    console.log(error);
+    const { status, statusText, data } = error.response;
+    if (status && statusText && data) {
+      console.log(`${colors.Yellow}[ERROR] - 🥺 ${statusText}`);
+      console.log(`${colors.Magenta}[ERROR] - 😤 Status Code : ${status}`);
+      console.log(`${colors.Red}[ERROR] - 🥵 ${data.developer_message}`);
+    } else {
+      console.log(error);
+    }
   }
 }
 
@@ -44,7 +62,7 @@ const getArrayUrls = async (urls, limit) => {
         `[+] 😱 It will take some time to download ${urls.length} videos !`
       );
     } else {
-      console.log("[+] 🥰 Start ...");
+      console.log(`${colors.Green}[+] 🥰 Start ...`);
     }
     const arrOfRequests = urls.map((url) => {
       return axios.get(url);
@@ -101,7 +119,10 @@ const downloadVideo = async (path, videoUrl, videoName, num, arr) => {
   }
 };
 
-const courseId = "course-v1:LinuxFoundationX+LFS101x+1T2020";
+// in termnal: node server.js --id=COURSE_ID_FROM_EDX
+const id = yargs.argv["id"];
+
+const courseId = id || "course-v1:LinuxFoundationX+LFS101x+1T2020";
 const depth = 100;
 const username = process.env.EDX_ACCOUNT_USERNAME;
 const cookie = process.env.EDX_COOKIES;
