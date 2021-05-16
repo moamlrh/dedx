@@ -52,7 +52,6 @@ yarn add dedx
 ```
   OPTIONS = Is an object, You can use it by this way :
   
-  ```javascript
     dedx(COURSE_ID, USERNAME, COOKIE, {
       limit: 0,             // to limit videos number for ex: to get only 10 video from this course || by default 0; 
       skipVideo: 0,         // to skip any video you want just pass the index ot this video for ex: pass video number 7 & will skip it ||  by default 0; 
@@ -60,6 +59,5 @@ yarn add dedx
       endVideo: 0,          // for ex: if you pass 10 and the course has more then 10 videos will download just the first 10 videos and ignore other from 11-20 ||  by default 0;
       videoPath: "/videos", // the path to save the video || make sure this folad is found in the main file
     })
-  ```
 ```
 
