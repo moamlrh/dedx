@@ -173,11 +173,7 @@ const courseId = id || "course-v1:LinuxFoundationX+LFS101x+1T2020";
 const username = process.env.EDX_ACCOUNT_USERNAME;
 const cookie = process.env.EDX_COOKIES;
 
-edxDownloader(courseId, username, cookie, {
-  limit: 5,
-  endVideo: 10,
-  startVideo: 2,
-});
+edxDownloader(courseId, username, cookie);
 
 const dedx = edxDownloader;
 module.exports = dedx;
