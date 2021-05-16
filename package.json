@@ -1,6 +1,6 @@
 {
-  "name": "edx-downloader",
-  "version": "1.0.0",
+  "name": "dedx",
+  "version": "1.2.0",
   "description": "download all course video!",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,14 @@
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
     "yargs": "^17.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moamlrh/dedx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/moamlrh/dedx/issues"
+  },
+  "homepage": "https://github.com/moamlrh/dedx#readme"
 }
