@@ -1,11 +1,10 @@
 {
   "name": "dedx",
-  "version": "0.0.0",
-  "description": "download all course video!",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "download all course videos!",
+  "main": "dedx.js",
   "scripts": {
-    "start": "node ./dedx.js",
-    "test": "node ./test.js "
+    "start": "node ./dedx.js"
   },
   "keywords": [
     "edx",
@@ -17,9 +16,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
-    "dotenv": "^9.0.2",
-    "express": "^4.17.1",
-    "yargs": "^17.0.1"
+    "dotenv": "^9.0.2"
   },
   "devDependencies": {},
   "repository": {
